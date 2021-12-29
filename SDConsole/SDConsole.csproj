@@ -12,6 +12,7 @@
     <SignAssembly>False</SignAssembly>
     <DebugType>portable</DebugType>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
+	<Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
