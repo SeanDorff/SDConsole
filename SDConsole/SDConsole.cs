@@ -9,28 +9,22 @@ namespace SDConsole
     /// </summary>
     public static class SDConsole
     {
-        private static readonly ConcurrentStack<SCursorState> cursorStateStack = new ConcurrentStack<SCursorState>();
+        private static readonly ConcurrentStack<SCursorState> cursorStateStack = new();
         private static readonly bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-        private static object cursorStateLock = new object();
+        private static readonly object cursorStateLock = new();
 
-        public static void pushCursorState()
-        {
-            cursorStateStack.Push(GetCursorState());
-        }
+        public static void PushCursorState() => cursorStateStack.Push(GetCursorState());
 
-        public static void popCursorState()
+        public static void PopCursorState()
         {
             SCursorState cursorState;
             if (cursorStateStack.TryPop(out cursorState))
                 SetCursorState(cursorState);
         }
 
-        public static object getCursorStateLock()
-        {
-            return cursorStateLock;
-        }
+        public static object GetCursorStateLock() => cursorStateLock;
 
-        private static SCursorState GetCursorState() => new SCursorState(Console.BackgroundColor, Console.CursorLeft, Console.CursorSize, Console.CursorTop, isWindows ? Console.CursorVisible : false, Console.ForegroundColor);
+        private static SCursorState GetCursorState() => new(Console.BackgroundColor, Console.CursorLeft, Console.CursorSize, Console.CursorTop, isWindows && Console.CursorVisible, Console.ForegroundColor);
 
         private static void SetCursorState(SCursorState cursorState)
         {
