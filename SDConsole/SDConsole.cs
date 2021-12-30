@@ -34,14 +34,15 @@ namespace SDConsole
         public static object GetCursorStateLock() => cursorStateLock;
 
         [SupportedOSPlatformGuard("windows")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Check platform compatibility", Justification = "Different method for non-Windows OS")]
         private static SCursorState GetCursorStateWindows() => new(Console.BackgroundColor, Console.CursorLeft, Console.CursorSize, Console.CursorTop, Console.CursorVisible, Console.ForegroundColor);
         [UnsupportedOSPlatformGuard("windows")]
         private static SCursorState GetCursorStateOtherOS() => new(Console.BackgroundColor, Console.CursorLeft, -1, Console.CursorTop, false, Console.ForegroundColor);
 
         [SupportedOSPlatformGuard("windows")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Check platform compatibility", Justification = "Different method for non-Windows OS")]
         private static void SetCursorStateWindows(SCursorState cursorState) => (Console.BackgroundColor, Console.CursorLeft, Console.CursorSize, Console.CursorTop, Console.CursorVisible, Console.ForegroundColor) = cursorState;
         [UnsupportedOSPlatformGuard("windows")]
         private static void SetCursorStateOtherOS(SCursorState cursorState) => (Console.BackgroundColor, Console.CursorLeft, _, Console.CursorTop, _, Console.ForegroundColor) = cursorState;
-
     }
 }
