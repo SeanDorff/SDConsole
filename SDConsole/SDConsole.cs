@@ -1,5 +1,6 @@
-﻿using System.Collections.Concurrent;
-using System.Runtime.Versioning;
+﻿using SDConsole.WriteBuffer;
+
+using System.Collections.Concurrent;
 
 namespace SDConsole
 {
@@ -11,38 +12,62 @@ namespace SDConsole
     {
         private static readonly ConcurrentStack<SCursorState> cursorStateStack = new();
         private static readonly object cursorStateLock = new();
-        private static readonly bool isWindows = OperatingSystem.IsWindows();
 
-        public static void PushCursorState()
-        {
-            if (isWindows)
-                cursorStateStack.Push(GetCursorStateWindows());
-            else
-                cursorStateStack.Push(GetCursorStateOtherOS());
-        }
+        /// <summary>
+        /// Pushes the current cursor state on a stack.
+        /// </summary>
+        public static void PushCursorState() => cursorStateStack.Push(CursorStateHelper.GetCursorState());
 
+        /// <summary>
+        /// Pops the top cursor state from a stack.
+        /// </summary>
         public static void PopCursorState()
         {
-            SCursorState cursorState;
-            if (cursorStateStack.TryPop(out cursorState))
-                if (isWindows)
-                    SetCursorStateWindows(cursorState);
-                else
-                    SetCursorStateOtherOS(cursorState);
+            if (cursorStateStack.TryPop(out SCursorState cursorState))
+                CursorStateHelper.SetCursorState(cursorState);
+            Console.WriteLine();
         }
 
+        /// <summary>
+        /// Returns the lock object for convenient synchronization.
+        /// </summary>
+        /// <returns></returns>
         public static object GetCursorStateLock() => cursorStateLock;
 
-        [SupportedOSPlatformGuard("windows")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Check platform compatibility", Justification = "Different method for non-Windows OS")]
-        private static SCursorState GetCursorStateWindows() => new(Console.BackgroundColor, Console.CursorLeft, Console.CursorSize, Console.CursorTop, Console.CursorVisible, Console.ForegroundColor);
-        [UnsupportedOSPlatformGuard("windows")]
-        private static SCursorState GetCursorStateOtherOS() => new(Console.BackgroundColor, Console.CursorLeft, -1, Console.CursorTop, false, Console.ForegroundColor);
-
-        [SupportedOSPlatformGuard("windows")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Check platform compatibility", Justification = "Different method for non-Windows OS")]
-        private static void SetCursorStateWindows(SCursorState cursorState) => (Console.BackgroundColor, Console.CursorLeft, Console.CursorSize, Console.CursorTop, Console.CursorVisible, Console.ForegroundColor) = cursorState;
-        [UnsupportedOSPlatformGuard("windows")]
-        private static void SetCursorStateOtherOS(SCursorState cursorState) => (Console.BackgroundColor, Console.CursorLeft, _, Console.CursorTop, _, Console.ForegroundColor) = cursorState;
+        public static void Write(bool value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(char value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(char[]? buffer) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, buffer));
+        public static void Write(char[] buffer, int index, int count) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, buffer, index, count));
+        public static void Write(decimal value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(double value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(int value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(long value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(object? value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(float value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(string? value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(string format, object? arg0) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, format, arg0));
+        public static void Write(string format, object? arg0, object? arg1) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, format, arg0, arg1));
+        public static void Write(string format, object? arg0, object? arg1, object? arg2) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, format, arg0, arg1, arg2));
+        public static void Write(string format, params object?[]? arg) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, format, arg));
+        public static void Write(uint value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void Write(ulong value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
+        public static void WriteLine() => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, ""));
+        public static void WriteLine(bool value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(char value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(char[]? buffer) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, buffer));
+        public static void WriteLine(char[] buffer, int index, int count) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, buffer, index, count));
+        public static void WriteLine(decimal value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(double value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(int value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(long value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(object? value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(float value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(string? value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(string format, object? arg0) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg0));
+        public static void WriteLine(string format, object? arg0, object? arg1) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg0, arg1));
+        public static void WriteLine(string format, object? arg0, object? arg1, object? arg2) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg0, arg1, arg2));
+        public static void WriteLine(string format, params object?[]? arg) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg));
+        public static void WriteLine(uint value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+        public static void WriteLine(ulong value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
     }
 }
