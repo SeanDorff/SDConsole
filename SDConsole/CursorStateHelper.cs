@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Versioning;
 
-namespace SDConsole
+namespace SDConNS
 {
     internal static class CursorStateHelper
     {

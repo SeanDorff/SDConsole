@@ -1,8 +1,8 @@
-﻿using SDConsole.WriteBuffer;
+﻿using SDConNS.WriteBuffer;
 
 using System.Collections.Concurrent;
 
-namespace SDConsole
+namespace SDConNS
 {
     /// <summary>
     /// Static class for managing the console state.
@@ -25,7 +25,6 @@ namespace SDConsole
         {
             if (cursorStateStack.TryPop(out SCursorState cursorState))
                 CursorStateHelper.SetCursorState(cursorState);
-            Console.WriteLine();
         }
 
         /// <summary>

@@ -1,8 +1,8 @@
-﻿using SDConsole.Enums;
+﻿using SDConNS.Enums;
 
 using System.Collections.Concurrent;
 
-namespace SDConsole.WriteBuffer
+namespace SDConNS.WriteBuffer
 {
     internal static class WriteBufferWriter
     {
@@ -23,114 +23,71 @@ namespace SDConsole.WriteBuffer
                 {
                     SDConsole.PushCursorState();
                     CursorStateHelper.SetCursorState(writeBufferContainer.CursorState);
+
+                    dynamic? value;
+
                     switch (writeBufferContainer.WriteBufferType)
                     {
                         case EWriteBufferType.Bool:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueBool());
-                            else
-                                Console.Write(writeBufferContainer.GetValueBool());
+                            value = writeBufferContainer.GetValueBool();
                             break;
                         case EWriteBufferType.Char:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueChar());
-                            else
-                                Console.Write(writeBufferContainer.GetValueChar());
+                            value = writeBufferContainer.GetValueChar();
                             break;
                         case EWriteBufferType.NullableCharArray:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueNullableCharArray());
-                            else
-                                Console.Write(writeBufferContainer.GetValueNullableCharArray());
+                            value = writeBufferContainer.GetValueNullableCharArray();
                             break;
                         case EWriteBufferType.CharArrayWithIndex:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueCharArrayWithIndex());
-                            else
-                                Console.Write(writeBufferContainer.GetValueCharArrayWithIndex());
+                            value = writeBufferContainer.GetValueCharArrayWithIndex();
                             break;
                         case EWriteBufferType.Decimal:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueDecimal());
-                            else
-                                Console.Write(writeBufferContainer.GetValueDecimal());
+                            value = writeBufferContainer.GetValueDecimal();
                             break;
                         case EWriteBufferType.Double:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueDouble());
-                            else
-                                Console.Write(writeBufferContainer.GetValueDouble());
+                            value = writeBufferContainer.GetValueDouble();
                             break;
                         case EWriteBufferType.Integer:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueInteger());
-                            else
-                                Console.Write(writeBufferContainer.GetValueInteger());
+                            value = writeBufferContainer.GetValueInteger();
                             break;
                         case EWriteBufferType.Long:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueLong());
-                            else
-                                Console.Write(writeBufferContainer.GetValueLong());
+                            value = writeBufferContainer.GetValueLong();
                             break;
                         case EWriteBufferType.NullableObject:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueNullableObject());
-                            else
-                                Console.Write(writeBufferContainer.GetValueNullableObject());
+                            value = writeBufferContainer.GetValueNullableObject();
                             break;
                         case EWriteBufferType.Float:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer?.GetValueFloat());
-                            else
-                                Console.Write(writeBufferContainer?.GetValueFloat());
+                            value = writeBufferContainer.GetValueFloat();
                             break;
                         case EWriteBufferType.NullableString:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueNullableString());
-                            else
-                                Console.Write(writeBufferContainer.GetValueNullableString());
+                            value = writeBufferContainer.GetValueNullableString();
                             break;
                         case EWriteBufferType.FormatStringOneNullableObject:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueFormatStringOneNullableObject());
-                            else
-                                Console.Write(writeBufferContainer.GetValueFormatStringOneNullableObject());
+                            value = writeBufferContainer.GetValueFormatStringOneNullableObject();
                             break;
                         case EWriteBufferType.FormatStringTwoNullableObjects:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueFormatStringTwoNullableObjects());
-                            else
-                                Console.Write(writeBufferContainer.GetValueFormatStringTwoNullableObjects());
+                            value = writeBufferContainer.GetValueFormatStringTwoNullableObjects();
                             break;
                         case EWriteBufferType.FormatStringThreeNullableObjects:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueFormatStringThreeNullableObjects());
-                            else
-                                Console.Write(writeBufferContainer.GetValueFormatStringThreeNullableObjects());
+                            value = writeBufferContainer.GetValueFormatStringThreeNullableObjects();
                             break;
                         case EWriteBufferType.FormatStringNullableObjectNullableArray:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueFormatStringNullableObjectNullableArray());
-                            else
-                                Console.Write(writeBufferContainer.GetValueFormatStringNullableObjectNullableArray());
+                            value = writeBufferContainer.GetValueFormatStringNullableObjectNullableArray();
                             break;
                         case EWriteBufferType.UInt:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueUInt());
-                            else
-                                Console.Write(writeBufferContainer.GetValueUInt());
+                            value = writeBufferContainer.GetValueUInt();
                             break;
                         case EWriteBufferType.ULong:
-                            if (writeBufferContainer.IsWriteLine)
-                                Console.WriteLine(writeBufferContainer.GetValueULong());
-                            else
-                                Console.Write(writeBufferContainer.GetValueULong());
+                            value = writeBufferContainer.GetValueULong();
                             break;
                         default: // unknown
-                            // TODO: throw an exception
-                            break;
+                            throw new ArgumentException("Unknown WriteBufferContainer value type");
                     }
+
+                    if (writeBufferContainer.IsWriteLine)
+                        Console.WriteLine(value);
+                    else
+                        Console.Write(value);
+
                     SDConsole.PopCursorState();
                 }
             Thread.Yield();

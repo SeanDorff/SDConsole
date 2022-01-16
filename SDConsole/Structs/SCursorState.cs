@@ -1,4 +1,4 @@
-﻿namespace SDConsole
+﻿namespace SDConNS
 {
     internal struct SCursorState
     {

@@ -1,6 +1,6 @@
-﻿using SDConsole.Enums;
+﻿using SDConNS.Enums;
 
-namespace SDConsole.WriteBuffer
+namespace SDConNS.WriteBuffer
 {
     public class WriteBufferContainer
     {
@@ -31,16 +31,12 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
-        internal bool GetValueBool() => (bool)_value0;
-
         internal WriteBufferContainer(bool isWriteLine, char value)
         {
             _writeBufferType = EWriteBufferType.Char;
             _value0 = value;
             _isWriteLine = isWriteLine;
         }
-
-        internal char GetValueChar() => (char)_value0;
 
         internal WriteBufferContainer(bool isWriteLine, char[]? value)
         {
@@ -49,8 +45,6 @@ namespace SDConsole.WriteBuffer
             _value0 = _placeHolder;
             _isWriteLine = isWriteLine;
         }
-
-        internal char[]? GetValueNullableCharArray() => (char[]?)_nullableValue0;
 
         internal WriteBufferContainer(bool isWriteLine, char[] value, int index, int count)
         {
@@ -61,16 +55,12 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
-        internal (char[], int, int) GetValueCharArrayWithIndex() => ((char[])_value0, _index, _count);
-
         internal WriteBufferContainer(bool isWriteLine, decimal value)
         {
             _writeBufferType = EWriteBufferType.Decimal;
             _value0 = value;
             _isWriteLine = isWriteLine;
         }
-
-        internal decimal GetValueDecimal() => (decimal)_value0;
 
         internal WriteBufferContainer(bool isWriteLine, double value)
         {
@@ -79,8 +69,6 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
-        internal double GetValueDouble() => (double)_value0;
-
         internal WriteBufferContainer(bool isWriteLine, int value)
         {
             _writeBufferType = EWriteBufferType.Integer;
@@ -88,16 +76,12 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
-        internal int GetValueInteger() => (int)_value0;
-
         internal WriteBufferContainer(bool isWriteLine, long value)
         {
             _writeBufferType = EWriteBufferType.Long;
             _value0 = value;
             _isWriteLine = isWriteLine;
         }
-
-        internal long GetValueLong() => (long)_value0;
 
         internal WriteBufferContainer(bool isWriteLine, object? value)
         {
@@ -107,16 +91,12 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
-        internal object? GetValueNullableObject() => _nullableValue0;
-
         internal WriteBufferContainer(bool isWriteLine, float value)
         {
             _writeBufferType = EWriteBufferType.Float;
             _value0 = value;
             _isWriteLine = isWriteLine;
         }
-
-        internal float GetValueFloat() => (float)_value0;
 
         internal WriteBufferContainer(bool isWriteLine, string? value)
         {
@@ -126,8 +106,6 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
-        internal string? GetValueNullableString() => (string?)_nullableValue0;
-
         internal WriteBufferContainer(bool isWriteLine, string format, object? arg0)
         {
             _writeBufferType = EWriteBufferType.FormatStringOneNullableObject;
@@ -135,8 +113,6 @@ namespace SDConsole.WriteBuffer
             _nullableValue0 = arg0;
             _isWriteLine = isWriteLine;
         }
-
-        internal (string, object?) GetValueFormatStringOneNullableObject() => ((string)_value0, _nullableValue0);
 
         internal WriteBufferContainer(bool isWriteLine, string format, object? arg0, object? arg1)
         {
@@ -146,8 +122,6 @@ namespace SDConsole.WriteBuffer
             _nullableValue1 = arg1;
             _isWriteLine = isWriteLine;
         }
-
-        internal (string, object?, object?) GetValueFormatStringTwoNullableObjects() => ((string)_value0, _nullableValue0, _nullableValue1);
 
         internal WriteBufferContainer(bool isWriteLine, string format, object? arg0, object? arg1, object? arg2)
         {
@@ -159,8 +133,6 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
-        internal (string, object?, object?, object?) GetValueFormatStringThreeNullableObjects() => ((string)_value0, _nullableValue0, _nullableValue1, _nullableValue2);
-
         internal WriteBufferContainer(bool isWriteLine, string format, params object?[]? arg0)
         {
             _writeBufferType = EWriteBufferType.FormatStringNullableObjectNullableArray;
@@ -169,16 +141,12 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
-        internal (string, object?[]?) GetValueFormatStringNullableObjectNullableArray() => ((string)_value0, _nullableObjectNullableArray);
-
         internal WriteBufferContainer(bool isWriteLine, uint value)
         {
             _writeBufferType = EWriteBufferType.UInt;
             _value0 = value;
             _isWriteLine = isWriteLine;
         }
-
-        internal uint GetValueUInt() => (uint)_value0;
 
         internal WriteBufferContainer(bool isWriteLine, ulong value)
         {
@@ -187,6 +155,22 @@ namespace SDConsole.WriteBuffer
             _isWriteLine = isWriteLine;
         }
 
+        internal bool GetValueBool() => (bool)_value0;
+        internal char GetValueChar() => (char)_value0;
+        internal char[]? GetValueNullableCharArray() => (char[]?)_nullableValue0;
+        internal (char[], int, int) GetValueCharArrayWithIndex() => ((char[])_value0, _index, _count);
+        internal decimal GetValueDecimal() => (decimal)_value0;
+        internal double GetValueDouble() => (double)_value0;
+        internal int GetValueInteger() => (int)_value0;
+        internal long GetValueLong() => (long)_value0;
+        internal object? GetValueNullableObject() => _nullableValue0;
+        internal float GetValueFloat() => (float)_value0;
+        internal string? GetValueNullableString() => (string?)_nullableValue0;
+        internal (string, object?) GetValueFormatStringOneNullableObject() => ((string)_value0, _nullableValue0);
+        internal (string, object?, object?) GetValueFormatStringTwoNullableObjects() => ((string)_value0, _nullableValue0, _nullableValue1);
+        internal (string, object?, object?, object?) GetValueFormatStringThreeNullableObjects() => ((string)_value0, _nullableValue0, _nullableValue1, _nullableValue2);
+        internal (string, object?[]?) GetValueFormatStringNullableObjectNullableArray() => ((string)_value0, _nullableObjectNullableArray);
+        internal uint GetValueUInt() => (uint)_value0;
         internal ulong GetValueULong() => (ulong)_value0;
     }
 }

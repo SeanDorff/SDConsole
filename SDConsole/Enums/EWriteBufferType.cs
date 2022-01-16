@@ -1,4 +1,4 @@
-﻿namespace SDConsole.Enums
+﻿namespace SDConNS.Enums
 {
     internal enum EWriteBufferType
     {
