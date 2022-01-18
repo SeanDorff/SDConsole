@@ -12,8 +12,13 @@ namespace SDConNS.WriteBuffer
         internal static void Enqueue(WriteBufferContainer writeBufferContainer)
         {
             writeBuffer.Enqueue(writeBufferContainer);
-            if (!writeBufferProcessor.ThreadState.Equals(ThreadState.Running))
-                writeBufferProcessor.Start();
+            switch (writeBufferProcessor.ThreadState)
+            {
+                case ThreadState.Stopped:
+                case ThreadState.Unstarted:
+                    writeBufferProcessor.Start();
+                    break;
+            }
         }
 
         private static void ProcessWriteBuffer()
