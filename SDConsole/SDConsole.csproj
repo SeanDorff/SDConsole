@@ -26,6 +26,6 @@
   <PropertyGroup>
 	<PackageId>SDConsole</PackageId>
 	<RepositoryType>git</RepositoryType>
-	<RepositoryUrl>https://github.com/SeanDorff/SDConsole</RepositoryUrl>
+	<RepositoryUrl>https://github.com/SeanDorff/SDConsole.git</RepositoryUrl>
   </PropertyGroup>
 </Project>
