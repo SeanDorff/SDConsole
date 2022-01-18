@@ -68,5 +68,16 @@ namespace SDConNS
         public static void WriteLine(string format, params object?[]? arg) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg));
         public static void WriteLine(uint value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
         public static void WriteLine(ulong value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value));
+
+        /// <summary>
+        /// Set a custom thread sleep time.
+        /// </summary>
+        /// <param name="sleep">Thread sleep time in milliseconds</param>
+        public static void SetThreadSleepTime(int sleep) => WriteBufferWriter.SetThreadSleepTime(sleep);
+
+        /// <summary>
+        /// Reset the thread sleep time to the default.
+        /// </summary>
+        public static void ResetThreadSleepTime() => WriteBufferWriter.ResetThreadSleepTime();
     }
 }

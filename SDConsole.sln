@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6FD7A95-3C7D-4736-AA0D-A672440DDC6E}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\ci.yaml = .github\workflows\ci.yaml
-		History.txt = History.txt
 		readme.md = readme.md
 		.github\workflows\release.yaml = .github\workflows\release.yaml
 	EndProjectSection

@@ -5,6 +5,7 @@ Threads can use the usual `Write()` and `WriteLine()` methods to write to **SDCo
 # Include in your project
 The easiest way to include **SDConsole** in your project is by including the [SDConsole Nuget Package](https://www.nuget.org/packages/SDConsole/).
 # Usage
+## Text output
 Below is an example for using **SDConsole** in C#.  
 ```
 using SDConNS; // (1)
@@ -24,8 +25,15 @@ namespace Example
     }
 }
 ```
-## Explanation
+### Explanation
 1. `using SDConNS` includes the **SDConsole** namespace.
 2. `lock (SDConsole.GetCursorStateLock())` acquires a lock from **SDConsole**. This ensures that no other thread will be able to modify the cursor status until the `Write()` method has been executed.
 3. `Console.SetCursorPosition(42, 42)` is an example for how you can modify the current cursor status. You could also modify the color or if the cursor itself is visible. **SDConsole** will preserve the set status and apply it accordingly when the actual text output takes place.
 4. `SDConsole.Write("Example text")` stores "Example text" in the output buffer of **SDConsole** along with the current cursor status.
+## Control thread sleep time
+The default thread sleep time of the buffer processor is `30` milliseconds.  
+You can alter and reset that value using the methods below.
+```
+SDConsole.SetThreadSleepTime(42);
+SDConsole.ResetThreadSleepTime();
+```

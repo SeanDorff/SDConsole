@@ -6,22 +6,22 @@ namespace SDConNS.WriteBuffer
 {
     internal static class WriteBufferWriter
     {
+        /// <summary>
+        /// Default thread sleep time is 30 milliseconds.
+        /// </summary>
+        private const int DEFAULT_SLEEP_TIME = 30;
+
         private static readonly ConcurrentQueue<WriteBufferContainer> writeBuffer = new();
         private static readonly Thread writeBufferProcessor = new(ProcessWriteBuffer);
-        private static bool processorStarted = false;
-        private static object lockObject = new();
+        private static bool useDefaultSleepTime = true;
+        private static int customSleepTime = DEFAULT_SLEEP_TIME;
 
-        internal static void Enqueue(WriteBufferContainer writeBufferContainer)
+        static WriteBufferWriter()
         {
-            writeBuffer.Enqueue(writeBufferContainer);
-            if (!processorStarted)
-                lock (lockObject)
-                {
-                    if (!processorStarted)
-                        writeBufferProcessor.Start();
-                    processorStarted = true;
-                }
+            writeBufferProcessor.Start();
         }
+
+        internal static void Enqueue(WriteBufferContainer writeBufferContainer) => writeBuffer.Enqueue(writeBufferContainer);
 
         private static void ProcessWriteBuffer()
         {
@@ -97,7 +97,29 @@ namespace SDConNS.WriteBuffer
 
                     SDConsole.PopCursorState();
                 }
-            Thread.Yield();
+            if (useDefaultSleepTime)
+                Thread.Sleep(DEFAULT_SLEEP_TIME);
+            else
+                Thread.Sleep(customSleepTime);
+        }
+
+        /// <summary>
+        /// Set a custom thread sleep time.
+        /// </summary>
+        /// <param name="sleep">Thread sleep time in milliseconds</param>
+        internal static void SetThreadSleepTime(int sleep)
+        {
+            customSleepTime = sleep;
+            useDefaultSleepTime = customSleepTime != DEFAULT_SLEEP_TIME;
+        }
+
+        /// <summary>
+        /// Reset the thread sleep time to the default.
+        /// </summary>
+        internal static void ResetThreadSleepTime()
+        {
+            customSleepTime = DEFAULT_SLEEP_TIME;
+            useDefaultSleepTime = true;
         }
     }
 }
