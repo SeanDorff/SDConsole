@@ -27,5 +27,10 @@
 	<PackageId>SDConsole</PackageId>
 	<RepositoryType>git</RepositoryType>
 	<RepositoryUrl>https://github.com/SeanDorff/SDConsole.git</RepositoryUrl>
+	  <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
+
+	<ItemGroup>
+		<None Include="readme.md" Pack="true" PackagePath="\"></None>
+	</ItemGroup>
 </Project>
