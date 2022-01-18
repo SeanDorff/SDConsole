@@ -8,17 +8,19 @@ namespace SDConNS.WriteBuffer
     {
         private static readonly ConcurrentQueue<WriteBufferContainer> writeBuffer = new();
         private static readonly Thread writeBufferProcessor = new(ProcessWriteBuffer);
+        private static bool processorStarted = false;
+        private static object lockObject = new();
 
         internal static void Enqueue(WriteBufferContainer writeBufferContainer)
         {
             writeBuffer.Enqueue(writeBufferContainer);
-            switch (writeBufferProcessor.ThreadState)
-            {
-                case ThreadState.Stopped:
-                case ThreadState.Unstarted:
-                    writeBufferProcessor.Start();
-                    break;
-            }
+            if (!processorStarted)
+                lock (lockObject)
+                {
+                    if (!processorStarted)
+                        writeBufferProcessor.Start();
+                    processorStarted = true;
+                }
         }
 
         private static void ProcessWriteBuffer()
