@@ -31,6 +31,6 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<None Include="readme.md" Pack="true" PackagePath="\"></None>
+		<None Include="..\readme.md" Pack="true" PackagePath="\"></None>
 	</ItemGroup>
 </Project>
