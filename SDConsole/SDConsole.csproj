@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Description></Description>
+    <Description>Thread safe wrapper around Console</Description>
     <PackageProjectUrl>https://github.com/SeanDorff/SDConsole</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SeanDorff/SDConsole.git</RepositoryUrl>
     <PackageTags>Console</PackageTags>

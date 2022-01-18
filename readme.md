@@ -1,5 +1,5 @@
 # About **SDConsole**
-**SDConsole** is aimed at concurrent threads which write text to the console.  
+**SDConsole** is a wrapper around `Console` and aimed at concurrent threads which write text to the console.  
 Threads can use the usual `Write()` and `WriteLine()` methods to write to **SDConsole**.  
 **SDConsole** will buffer the current cursor status along with the desired output and process the buffered commands later. This way multiple threads can safely output the desired text without handling concurrency issues.
 # Include in your project
