@@ -3,7 +3,8 @@
 Threads can use the usual `Write()` and `WriteLine()` methods to write to **SDConsole**.  
 **SDConsole** will buffer the current cursor status along with the desired output and process the buffered commands later. This way multiple threads can safely output the desired text without handling concurrency issues.
 # Include in your project
-The easiest way to include **SDConsole** in your project is by including the [SDConsole Nuget Package](https://www.nuget.org/packages/SDConsole/).
+The easiest way to include **SDConsole** in your project is by including the [SDConsole Nuget Package](https://www.nuget.org/packages/SDConsole/).  
+You can also download the source code from [SDConsole on GitHub](https://github.com/SeanDorff/SDConsole/).
 # Usage
 ## Text output
 Below is an example for using **SDConsole** in C#.  
