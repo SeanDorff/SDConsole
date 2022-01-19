@@ -2,6 +2,9 @@
 
 namespace SDConNS.WriteBuffer
 {
+    /// <summary>
+    /// Stores information on text that is to be printed on the console.
+    /// </summary>
     public class WriteBufferContainer
     {
         private readonly EWriteBufferType _writeBufferType;
