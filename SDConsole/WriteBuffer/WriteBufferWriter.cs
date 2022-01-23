@@ -30,66 +30,27 @@ namespace SDConNS.WriteBuffer
                 {
                     SDConsole.PushCursorState();
                     CursorStateHelper.SetCursorState(writeBufferContainer.CursorState);
-
-                    dynamic? value;
-
-                    switch (writeBufferContainer.WriteBufferType)
+                    dynamic? value = writeBufferContainer.WriteBufferType switch
                     {
-                        case EWriteBufferType.Bool:
-                            value = writeBufferContainer.GetValueBool();
-                            break;
-                        case EWriteBufferType.Char:
-                            value = writeBufferContainer.GetValueChar();
-                            break;
-                        case EWriteBufferType.NullableCharArray:
-                            value = writeBufferContainer.GetValueNullableCharArray();
-                            break;
-                        case EWriteBufferType.CharArrayWithIndex:
-                            value = writeBufferContainer.GetValueCharArrayWithIndex();
-                            break;
-                        case EWriteBufferType.Decimal:
-                            value = writeBufferContainer.GetValueDecimal();
-                            break;
-                        case EWriteBufferType.Double:
-                            value = writeBufferContainer.GetValueDouble();
-                            break;
-                        case EWriteBufferType.Integer:
-                            value = writeBufferContainer.GetValueInteger();
-                            break;
-                        case EWriteBufferType.Long:
-                            value = writeBufferContainer.GetValueLong();
-                            break;
-                        case EWriteBufferType.NullableObject:
-                            value = writeBufferContainer.GetValueNullableObject();
-                            break;
-                        case EWriteBufferType.Float:
-                            value = writeBufferContainer.GetValueFloat();
-                            break;
-                        case EWriteBufferType.NullableString:
-                            value = writeBufferContainer.GetValueNullableString();
-                            break;
-                        case EWriteBufferType.FormatStringOneNullableObject:
-                            value = writeBufferContainer.GetValueFormatStringOneNullableObject();
-                            break;
-                        case EWriteBufferType.FormatStringTwoNullableObjects:
-                            value = writeBufferContainer.GetValueFormatStringTwoNullableObjects();
-                            break;
-                        case EWriteBufferType.FormatStringThreeNullableObjects:
-                            value = writeBufferContainer.GetValueFormatStringThreeNullableObjects();
-                            break;
-                        case EWriteBufferType.FormatStringNullableObjectNullableArray:
-                            value = writeBufferContainer.GetValueFormatStringNullableObjectNullableArray();
-                            break;
-                        case EWriteBufferType.UInt:
-                            value = writeBufferContainer.GetValueUInt();
-                            break;
-                        case EWriteBufferType.ULong:
-                            value = writeBufferContainer.GetValueULong();
-                            break;
-                        default: // unknown
-                            throw new ArgumentException("Unknown WriteBufferContainer value type");
-                    }
-
+                        EWriteBufferType.Bool => writeBufferContainer.GetValueBool(),
+                        EWriteBufferType.Char => writeBufferContainer.GetValueChar(),
+                        EWriteBufferType.NullableCharArray => writeBufferContainer.GetValueNullableCharArray(),
+                        EWriteBufferType.CharArrayWithIndex => writeBufferContainer.GetValueCharArrayWithIndex(),
+                        EWriteBufferType.Decimal => writeBufferContainer.GetValueDecimal(),
+                        EWriteBufferType.Double => writeBufferContainer.GetValueDouble(),
+                        EWriteBufferType.Integer => writeBufferContainer.GetValueInteger(),
+                        EWriteBufferType.Long => writeBufferContainer.GetValueLong(),
+                        EWriteBufferType.NullableObject => writeBufferContainer.GetValueNullableObject(),
+                        EWriteBufferType.Float => writeBufferContainer.GetValueFloat(),
+                        EWriteBufferType.NullableString => writeBufferContainer.GetValueNullableString(),
+                        EWriteBufferType.FormatStringOneNullableObject => writeBufferContainer.GetValueFormatStringOneNullableObject(),
+                        EWriteBufferType.FormatStringTwoNullableObjects => writeBufferContainer.GetValueFormatStringTwoNullableObjects(),
+                        EWriteBufferType.FormatStringThreeNullableObjects => writeBufferContainer.GetValueFormatStringThreeNullableObjects(),
+                        EWriteBufferType.FormatStringNullableObjectNullableArray => writeBufferContainer.GetValueFormatStringNullableObjectNullableArray(),
+                        EWriteBufferType.UInt => writeBufferContainer.GetValueUInt(),
+                        EWriteBufferType.ULong => writeBufferContainer.GetValueULong(),
+                        _ => throw new ArgumentException("Unknown WriteBufferContainer value type"),
+                    };
                     if (writeBufferContainer.IsWriteLine)
                         Console.WriteLine(value);
                     else
