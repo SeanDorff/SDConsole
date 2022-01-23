@@ -34,143 +34,143 @@ namespace SDConNS
         public static object GetCursorStateLock() => cursorStateLock;
 
         /// <summary>
-        /// See <see cref="Console.Write(bool)"/>
+        /// <inheritdoc cref="Console.Write(bool)"/>
         /// </summary>
         public static void Write(bool value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(char)"/>
+        /// <inheritdoc cref="Console.Write(char)"/>
         /// </summary>
         public static void Write(char value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(char[]?)"/>
+        /// <inheritdoc cref="Console.Write(char[]?)"/>
         /// </summary>
         public static void Write(char[]? buffer) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, buffer));
         /// <summary>
-        /// See <see cref="Console.Write(char[], int, int)"/>
+        /// <inheritdoc cref="Console.Write(char[], int, int)"/>
         /// </summary>
         public static void Write(char[] buffer, int index, int count) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, buffer, index, count));
         /// <summary>
-        /// See <see cref="Console.Write(decimal)"/>
+        /// <inheritdoc cref="Console.Write(decimal)"/>
         /// </summary>
         public static void Write(decimal value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(double)"/>
+        /// <inheritdoc cref="Console.Write(double)"/>
         /// </summary>
         public static void Write(double value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(int)"/>
+        /// <inheritdoc cref="Console.Write(int)"/>
         /// </summary>
         public static void Write(int value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(long)"/>
+        /// <inheritdoc cref="Console.Write(long)"/>
         /// </summary>
         public static void Write(long value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(object?)"/>
+        /// <inheritdoc cref="Console.Write(object?)"/>
         /// </summary>
         public static void Write(object? value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(float)"/>
+        /// <inheritdoc cref="Console.Write(float)"/>
         /// </summary>
         public static void Write(float value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(string?)"/>
+        /// <inheritdoc cref="Console.Write(string?)"/>
         /// </summary>
         public static void Write(string? value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(string, object?)"/>
+        /// <inheritdoc cref="Console.Write(string, object?)"/>
         /// </summary>
         public static void Write(string format, object? arg0) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, format, arg0));
         /// <summary>
-        /// See <see cref="Console.Write(string, object?, object?)"/>
+        /// <inheritdoc cref="Console.Write(string, object?, object?)"/>
         /// </summary>
         public static void Write(string format, object? arg0, object? arg1) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, format, arg0, arg1));
         /// <summary>
-        /// See <see cref="Console.Write(string, object?, object?, object?)"/>
+        /// <inheritdoc cref="Console.Write(string, object?, object?, object?)"/>
         /// </summary>
         public static void Write(string format, object? arg0, object? arg1, object? arg2) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, format, arg0, arg1, arg2));
         /// <summary>
-        /// See <see cref="Console.Write(string, object?[]?)"/>
+        /// <inheritdoc cref="Console.Write(string, object?[]?)"/>
         /// </summary>
         public static void Write(string format, params object?[]? arg) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, format, arg));
         /// <summary>
-        /// See <see cref="Console.Write(uint)"/>
+        /// <inheritdoc cref="Console.Write(uint)"/>
         /// </summary>
         public static void Write(uint value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.Write(ulong)"/>
+        /// <inheritdoc cref="Console.Write(ulong)"/>
         /// </summary>
         public static void Write(ulong value) => WriteBufferWriter.Enqueue(new WriteBufferContainer(false, value));
         /// <summary>
-        /// See <see cref="Console.WriteLine()"/>
+        /// <inheritdoc cref="Console.WriteLine()"/>
         /// </summary>
         public static void WriteLine() { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, "")); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(bool)"/>
+        /// <inheritdoc cref="Console.WriteLine(bool)"/>
         /// </summary>
         public static void WriteLine(bool value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(char)"/>
+        /// <inheritdoc cref="Console.WriteLine(char)"/>
         /// </summary>
         public static void WriteLine(char value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(char[]?)"/>
+        /// <inheritdoc cref="Console.WriteLine(char[]?)"/>
         /// </summary>
         public static void WriteLine(char[]? buffer) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, buffer)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(char[], int, int)"/>
+        /// <inheritdoc cref="Console.WriteLine(char[], int, int)"/>
         /// </summary>
         public static void WriteLine(char[] buffer, int index, int count) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, buffer, index, count)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(decimal)"/>
+        /// <inheritdoc cref="Console.WriteLine(decimal)"/>
         /// </summary>
         public static void WriteLine(decimal value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(double)"/>
+        /// <inheritdoc cref="Console.WriteLine(double)"/>
         /// </summary>
         public static void WriteLine(double value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(int)"
+        /// <inheritdoc cref="Console.WriteLine(int)"
         /// </summary>
         public static void WriteLine(int value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(long)"/>
+        /// <inheritdoc cref="Console.WriteLine(long)"/>
         /// </summary>
         public static void WriteLine(long value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(object?)"/>
+        /// <inheritdoc cref="Console.WriteLine(object?)"/>
         /// </summary>
         public static void WriteLine(object? value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(float)"/>
+        /// <inheritdoc cref="Console.WriteLine(float)"/>
         /// </summary>
         public static void WriteLine(float value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(string?)"/>
+        /// <inheritdoc cref="Console.WriteLine(string?)"/>
         /// </summary>
         public static void WriteLine(string? value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(string, object?)"/>
+        /// <inheritdoc cref="Console.WriteLine(string, object?)"/>
         /// </summary>
         public static void WriteLine(string format, object? arg0) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg0)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(string, object?, object?)"/>
+        /// <inheritdoc cref="Console.WriteLine(string, object?, object?)"/>
         /// </summary>
         public static void WriteLine(string format, object? arg0, object? arg1) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg0, arg1)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(string, object?, object?, object?)"/>
+        /// <inheritdoc cref="Console.WriteLine(string, object?, object?, object?)"/>
         /// </summary>
         public static void WriteLine(string format, object? arg0, object? arg1, object? arg2) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg0, arg1, arg2)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(string, object?[]?)"/>
+        /// <inheritdoc cref="Console.WriteLine(string, object?[]?)"/>
         /// </summary>
         public static void WriteLine(string format, params object?[]? arg) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, format, arg)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(uint)"/>
+        /// <inheritdoc cref="Console.WriteLine(uint)"/>
         /// </summary>
         public static void WriteLine(uint value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
         /// <summary>
-        /// See <see cref="Console.WriteLine(ulong)"/>
+        /// <inheritdoc cref="Console.WriteLine(ulong)"/>
         /// </summary>
         public static void WriteLine(ulong value) { WriteBufferWriter.Enqueue(new WriteBufferContainer(true, value)); LineFeed(); }
 
